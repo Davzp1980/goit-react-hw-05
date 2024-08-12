@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getTrendingMovies } from '../../components/movie-api';
 import { Link } from 'react-router-dom';
 
-function HomePage({ setTrendingMovies, trendingMovies }) {
+function HomePage() {
+  const [trendingMovies, setTrendingMovies] = useState([]);
   useEffect(() => {
     async function fetchMovieList() {
       const res = await getTrendingMovies();
