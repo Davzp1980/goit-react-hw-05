@@ -1,0 +1,12 @@
+.main {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+.overview {
+}
+.imgDiv {
+  min-width: 500px;
+}
+.img {
+}
