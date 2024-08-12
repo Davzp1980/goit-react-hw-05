@@ -64,10 +64,14 @@ function MovieDetailsPage() {
         <p>Additional information</p>
         <ul className={css.castList}>
           <li>
-            <Link to="cast">Cast</Link>
+            <Link to="cast" state={backLinkHref}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" state={backLinkHref}>
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>

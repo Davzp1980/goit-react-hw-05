@@ -10,18 +10,23 @@ function MovieCast() {
   const { id } = useParams();
   const movId = parseInt(id);
   const [casts, setCasts] = useState([]);
+  const [isCasts, setIsCasts] = useState(false);
 
   useEffect(() => {
     async function getCasts(movieId) {
       const res = await getMovieCasts(movieId);
 
       setCasts(res.cast);
+      if (res.cast.length === 0) {
+        setIsCasts(true);
+      }
     }
     getCasts(movId);
   }, [movId]);
 
   return (
     <>
+      {isCasts && <p>We don&apos;t have any casts for this move</p>}
       <ul className={css.ul}>
         {casts.map(cast => (
           <li key={cast.id} className={css.li}>
