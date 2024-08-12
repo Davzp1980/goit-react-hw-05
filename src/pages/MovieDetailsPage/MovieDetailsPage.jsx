@@ -1,18 +1,12 @@
-import {
-  Link,
-  Outlet,
-  useLocation,
-  // useNavigate,
-  useParams,
-} from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import css from './MovieDetailsPage.module.css';
 import { getMovieDetails } from '../../components/movie-api';
 import { useEffect, useState } from 'react';
+import { IoIosArrowRoundBack } from 'react-icons/io';
 
 const defaultImg =
-  '<https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster>';
+  'https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster';
 function MovieDetailsPage() {
-  // const navigate = useNavigate();
   const { id } = useParams();
 
   const location = useLocation();
@@ -37,7 +31,9 @@ function MovieDetailsPage() {
 
   return (
     <>
-      <Link to={backLinkHref}>Go back</Link>
+      <Link to={backLinkHref} className={css.goBack}>
+        {<IoIosArrowRoundBack className={css.arrow} />} Go back
+      </Link>
 
       <div className={css.main}>
         <div className={css.imgDiv}>

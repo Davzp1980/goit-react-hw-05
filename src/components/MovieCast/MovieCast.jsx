@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import css from './MovieCast.module.css';
 
 const defaultImg =
-  '<https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster>';
+  'https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster';
 
 function MovieCast() {
   const { id } = useParams();

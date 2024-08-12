@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { searchMovies } from '../../components/movie-api';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import MovieList from '../../components/MovieList/MovieList';
 
 function MoviesPage() {
   const [searchValue, setSearchValue] = useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query');
+  const [, setSearchParams] = useSearchParams();
+
   const [movies, setMovies] = useState([]);
   const location = useLocation();
 
@@ -30,7 +30,6 @@ function MoviesPage() {
 
   return (
     <>
-      <h1>Search form Вы искали: {query}</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="searchValue" />
         <button type="submit">Search</button>

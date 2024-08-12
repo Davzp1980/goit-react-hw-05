@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
-import css from './Header.module.css';
+import css from './Navigation.module.css';
 
-function Header() {
+function Navigation() {
   function activeLink({ isActive }) {
     return clsx(css.link, isActive && css.active);
   }
@@ -20,4 +20,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Navigation;

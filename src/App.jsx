@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 const Home = lazy(() => import('./pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
-const Header = lazy(() => import('./pages/Header/Header'));
+const Navigation = lazy(() => import('./pages/Navigation/Navigation'));
 const MovieDetailsPage = lazy(() =>
   import('./pages/MovieDetailsPage/MovieDetailsPage')
 );
@@ -19,7 +19,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 function App() {
   return (
     <>
-      <Header />
+      <Navigation />
       <Suspense>
         <Routes>
           <Route path="/" element={<Home />} />
