@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { searchMovies } from '../../components/movie-api';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import MovieList from '../../components/MovieList/MovieList';
 
 function MoviesPage() {
   const [searchValue, setSearchValue] = useState(null);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
-
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     if (searchValue === null) return;
@@ -26,8 +26,6 @@ function MoviesPage() {
   function handleSubmit(e) {
     e.preventDefault();
     setSearchValue(e.currentTarget.elements.searchValue.value);
-
-    //e.currentTarget.reset();
   }
 
   return (
@@ -37,13 +35,7 @@ function MoviesPage() {
         <input type="text" name="searchValue" />
         <button type="submit">Search</button>
       </form>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <MovieList movies={movies} location={location} />
     </>
   );
 }

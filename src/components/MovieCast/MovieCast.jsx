@@ -3,6 +3,9 @@ import { getMovieCasts } from '../movie-api';
 import { useEffect, useState } from 'react';
 import css from './MovieCast.module.css';
 
+const defaultImg =
+  '<https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster>';
+
 function MovieCast() {
   const { id } = useParams();
   const movId = parseInt(id);
@@ -24,7 +27,11 @@ function MovieCast() {
           <li key={cast.id} className={css.li}>
             <img
               className={css.img}
-              src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+              src={
+                cast.profile_path
+                  ? `https://image.tmdb.org/t/p/w500${cast.profile_path}`
+                  : defaultImg
+              }
               alt={cast.original_name}
             />
             <p>Character: </p>

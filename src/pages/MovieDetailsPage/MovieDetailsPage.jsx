@@ -9,6 +9,8 @@ import css from './MovieDetailsPage.module.css';
 import { getMovieDetails } from '../../components/movie-api';
 import { useEffect, useState } from 'react';
 
+const defaultImg =
+  '<https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster>';
 function MovieDetailsPage() {
   // const navigate = useNavigate();
   const { id } = useParams();
@@ -28,7 +30,6 @@ function MovieDetailsPage() {
       setMovie(res);
       const genres = res.genres.map(genre => genre.name).join(', ');
       setGenres(genres);
-      console.log(location.pathname);
     }
 
     moviesDetails(movId);
@@ -37,20 +38,16 @@ function MovieDetailsPage() {
   return (
     <>
       <Link to={backLinkHref}>Go back</Link>
-      {/* <button
-        type="button"
-        state={backLinkHref}
-        onClick={() => {
-          navigate('/');
-        }}
-      >
-        Go back
-      </button> */}
+
       <div className={css.main}>
         <div className={css.imgDiv}>
           <img
             className={css.img}
-            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+            src={
+              movie.backdrop_path
+                ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+                : defaultImg
+            }
             alt={movie.title}
           />
         </div>
