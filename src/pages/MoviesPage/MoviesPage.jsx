@@ -4,28 +4,26 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import MovieList from '../../components/MovieList/MovieList';
 
 function MoviesPage() {
-  const [searchValue, setSearchValue] = useState(null);
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [movies, setMovies] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
-    if (searchValue === null) return;
-    async function getMovies(search) {
-      const res = await searchMovies(search);
-      setSearchParams({
-        query: search,
-      });
+    const query = searchParams.get('query');
+    async function getMovies() {
+      const res = await searchMovies(query);
 
       setMovies(res.results);
     }
-    getMovies(searchValue);
-  }, [searchValue, setSearchParams]);
+    getMovies();
+  }, [searchParams]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSearchValue(e.currentTarget.elements.searchValue.value);
+    setSearchParams({
+      query: e.currentTarget.elements.searchValue.value,
+    });
   }
 
   return (
