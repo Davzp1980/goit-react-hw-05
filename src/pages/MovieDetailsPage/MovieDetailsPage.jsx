@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import css from './MovieDetailsPage.module.css';
 import { getMovieDetails } from '../../components/movie-api';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 
 const defaultImg =
@@ -10,7 +10,7 @@ function MovieDetailsPage() {
   const { id } = useParams();
 
   const location = useLocation();
-  const backLinkHref = location.state ?? '/';
+  const backLinkHref = useRef(location.state ?? '/');
 
   const movId = parseInt(id);
   const [movie, setMovie] = useState([]);
@@ -31,7 +31,7 @@ function MovieDetailsPage() {
 
   return (
     <>
-      <Link to={backLinkHref} className={css.goBack}>
+      <Link to={backLinkHref.current} className={css.goBack}>
         {<IoIosArrowRoundBack className={css.arrow} />} Go back
       </Link>
 
